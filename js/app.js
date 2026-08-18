@@ -281,7 +281,7 @@ function productCard(product) {
 
                 </div>
 
-                <div class="product-info">
+                <div class="product-info p-3">
 
                     <span class="product-category">
                         ${product.category}
@@ -289,13 +289,13 @@ function productCard(product) {
 
                     <h5>${product.name}</h5>
 
-                    <div class="product-rating">
+                    <div class="product-rating text-warning">
 
                         <i class="fa-solid fa-star"></i>
 
                         ${product.rating}
 
-                        <span>
+                        <span class="text-danger">
                             (${product.reviews})
                         </span>
 
@@ -320,11 +320,9 @@ function productCard(product) {
                     </div>
 
                     <button
-                        class="btn btn-dark w-100 mt-2"
+                        class="btn btn-danger w-100 mt-2"
                         onclick="addToCart(${product.id})">
-
-                        <i class="fa-solid fa-bag-shopping"></i>
-
+                        
                         Add to Cart
 
                     </button>
