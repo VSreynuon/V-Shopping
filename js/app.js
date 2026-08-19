@@ -320,7 +320,7 @@ function productCard(product) {
                     </div>
 
                     <button
-                        class="btn btn-danger w-100 mt-2"
+                        class="btn w-100 mt-2"
                         onclick="addToCart(${product.id})">
                         
                         Add to Cart
@@ -342,10 +342,6 @@ function createNavbar() {
     if (!n) return;
 
     n.innerHTML = `
-        <div class="top-bar">
-            FREE SHIPPING ON ORDERS OVER $49
-        </div>
-
         <nav class="navbar navbar-expand-lg main-navbar">
 
             <div class="container">
@@ -519,7 +515,7 @@ function createFooter() {
 
                         <p>Phnom Penh, Cambodia</p>
 
-                        <p>+855 12 345 678</p>
+                        <p>+855 96 31 20 878</p>
 
                         <p>support@vshopping.com</p>
 

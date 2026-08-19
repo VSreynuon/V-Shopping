@@ -4,20 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <title>Products - V-Shopping Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 
 <body>
+    <div class="admin-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand"><span class="brand-mark">V</span><span>V-SHOPPING</span></div>
+            <div class="admin-profile">
+                <div class="avatar">A</div>
+                <div><strong>Admin</strong><small>Administrator</small></div>
+            </div>
+            <nav><a href="index.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a><a class="active"
+                    href="products.html"><i class="fa-solid fa-box"></i> Products <span class="nav-badge"
+                        id="sideProductCount">0</span></a><a href="orders.html"><i class="fa-solid fa-bag-shopping"></i>
+                    Orders</a><a href="customers.html"><i class="fa-solid fa-users"></i> Customers</a><a
+                    href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></nav>
+            <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </aside>
+        <main class="main-content">
+            <header class="topbar"><button class="icon-btn d-lg-none" onclick="toggleSidebar()"><i
+                        class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1>Products</h1>
+                    <p>Manage your V-Shopping catalog.</p>
+                </div>
+                <div class="top-actions"><button class="icon-btn" onclick="location.href='../index.html'"><i
+                            class="fa-solid fa-store"></i></button>
+                    <div class="top-avatar">A</div>
+                </div>
+            </header>
+            <section class="panel">
+                <div class="toolbar">
+                    <div class="search-box"><i class="fa-solid fa-search"></i><input id="productSearch"
+                            placeholder="Search products..."></div><select id="categoryFilter">
+                        <option value="All">All categories</option>
+                        <option>Women</option>
+                        <option>Men</option>
+                        <option>Accessories</option>
+                    </select><button class="btn-main" onclick="openProductModal()"><i class="fa-solid fa-plus"></i> Add
+                        Product</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Rating</th>
+                                <th>ID</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTable"></tbody>
+                    </table>
+                </div>
+                <div id="emptyProducts" class="empty-state d-none"><i class="fa-solid fa-box-open"></i>
+                    <h4>No products found</h4>
+                    <p>Try another search or add a new product.</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
-
-
-    
-    <script src="../js/products.js"></script>
-    <script src="../js/app.js"></script>
-    <script src="../js/admin-products.js"></script>
+    <div class="modal-backdrop-custom" id="productModal">
+        <div class="admin-modal">
+            <div class="modal-title">
+                <div>
+                    <h2 id="modalTitle">Add Product</h2>
+                    <p>Create or update a product.</p>
+                </div><button class="close-btn" onclick="closeProductModal()">&times;</button>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <div class="image-upload">
+                    <div class="image-preview" id="imagePreview"><i class="fa-regular fa-image"></i></div>
+                    <div><label class="upload-btn">Choose Image<input type="file" id="productImageFile" accept="image/*"
+                                hidden></label><small>Or use an image URL below.</small></div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-8"><label>Product Name</label><input id="productName" required></div>
+                    <div class="col-md-4"><label>Category</label><select id="productCategory" required>
+                            <option>Women</option>
+                            <option>Men</option>
+                            <option>Accessories</option>
+                        </select></div>
+                    <div class="col-md-4"><label>Price</label><input id="productPrice" type="number" min="0" step=".01"
+                            required></div>
+                    <div class="col-md-4"><label>Old Price</label><input id="productOldPrice" type="number" min="0"
+                            step=".01"></div>
+                    <div class="col-md-4"><label>Rating</label><input id="productRating" type="number" min="0" max="5"
+                            step=".1" value="0"></div>
+                    <div class="col-md-6"><label>Reviews</label><input id="productReviews" type="number" min="0"
+                            value="0"></div>
+                    <div class="col-md-6"><label>Image URL</label><input id="productImage" placeholder="https://...">
+                    </div>
+                    <div class="col-12"><label>Sizes</label><input id="productSizes" placeholder="S, M, L, XL"></div>
+                    <div class="col-12"><label>Colors</label><input id="productColors" placeholder="Black, White, Red">
+                    </div>
+                </div>
+                <div class="modal-actions"><button type="button" class="btn-light-custom"
+                        onclick="closeProductModal()">Cancel</button><button class="btn-main" type="submit">Save
+                        Product</button></div>
+            </form>
+        </div>
+    </div>
+    <script src="js/admin.js"></script>
 </body>
 
 </html>
